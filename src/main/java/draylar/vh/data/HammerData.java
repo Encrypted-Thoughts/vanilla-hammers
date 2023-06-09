@@ -88,20 +88,6 @@ public class HammerData implements ContentData {
         }
     }
 
-    public ItemGroup getGroup() {
-        // attempt to get group from string
-        if (cachedGroup == null && group != null) {
-            for (ItemGroup itemGroup : ItemGroups.getGroups()) {
-                if (itemGroup.getId().equals(group)) {
-                    cachedGroup = itemGroup;
-                    break;
-                }
-            }
-        }
-
-        return cachedGroup;
-    }
-
     public boolean hasExtraKnockback() {
         return hasExtraKnockback;
     }

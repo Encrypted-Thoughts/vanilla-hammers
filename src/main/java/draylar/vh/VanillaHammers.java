@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
@@ -26,11 +27,13 @@ public class VanillaHammers implements ModInitializer {
 	public void onInitialize() {
 		MagnaOptionals.optInForCurse();
 		StaticContent.load(id("hammers"), HammerData.class);
-		GROUP = FabricItemGroup.builder(id("group"))
+
+		GROUP = FabricItemGroup.builder()
 				.displayName(Text.literal("Vanilla Hammers"))
 				.icon(() -> new ItemStack(Registries.ITEM.get(id("diamond_hammer"))))
 				.entries((context, entries) -> entries.addAll(HammerData.ENTRY_SET))
 			.build();
+		Registry.register(Registries.ITEM_GROUP, new Identifier(MODID, MODID), GROUP);
 		registerCallbackHandlers();
 	}
 
